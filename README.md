@@ -1,3 +1,43 @@
+# Quickstart
+**Installation**
+1. kubectl apply -k kustomize/install/namespace
+
+pgo
+2. kubectl apply --server-side -k kustomize/install/default
+
+
+**Monitoring**
+alert manager, grafana, prometheus
+4. kubectl apply --server-side -k kustomize/monitoring
+
+**Keycloak**
+
+**Postgres**
+pgbouncer, postgresha1 x 2 replica, repo
+4. kubectl apply -k kustomize/high-availability
+4. kubectl apply -k kustomize/postgres
+pgadmin
+5. kubectl create secret generic pgadmin-password-secret \
+  -n postgres-operator \
+  --from-literal=admin-password=testPassword123
+
+
+6. kubectl apply -k kustomize/pgadmin
+
+**Connecting to a Postgres Cluster**
+7. eval $(crc oc-env)
+8. oc port-forward pgadmin-8dffcbfe-0058-47e0-9968-e46d6b00eca6-0 5050:5050
+
+pgadmin login details
+admin@example.com
+testPassword123
+
+database access details
+host: postgres-cluster-ha
+password:
+kubectl get secret postgres-cluster-ha-pguser-postgres-cluster-ha -n postgres-operator -o jsonpath="{.data.password}" | base64 --decode
+
+
 # Examples for Using [PGO](https://github.com/CrunchyData/postgres-operator), the Postgres Operator from Crunchy Data
 
 This repository contains a collection of installers and examples for deploying, operating and maintaining Postgres clusters using PGO, the Postgres Operator from Crunchy Data as part of [Crunchy Postgres for Kubernetes](https://www.crunchydata.com/products/crunchy-postgresql-for-kubernetes).
