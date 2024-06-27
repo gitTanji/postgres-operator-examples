@@ -5,12 +5,9 @@
 pgo
 2. kubectl apply --server-side -k kustomize/install/default
 
-
 **Monitoring**
 alert manager, grafana, prometheus
 4. kubectl apply --server-side -k kustomize/monitoring
-
-**Keycloak**
 
 **Postgres**
 pgbouncer, postgresha1 x 2 replica, repo
@@ -20,7 +17,6 @@ pgadmin
 5. kubectl create secret generic pgadmin-password-secret \
   -n postgres-operator \
   --from-literal=admin-password=testPassword123
-
 
 6. kubectl apply -k kustomize/pgadmin
 
@@ -33,7 +29,7 @@ admin@example.com
 testPassword123
 
 database access details
-host: postgres-cluster-ha
+username: postgres-cluster-ha
 password:
 kubectl get secret postgres-cluster-ha-pguser-postgres-cluster-ha -n postgres-operator -o jsonpath="{.data.password}" | base64 --decode
 
