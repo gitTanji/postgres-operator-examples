@@ -1,15 +1,15 @@
 # Quickstart
-**Installation**
+# Installation
 1. kubectl apply -k kustomize/install/namespace
 
 pgo
 2. kubectl apply --server-side -k kustomize/install/default
 
-**Monitoring**
+# Monitoring
 alert manager, grafana, prometheus
 4. kubectl apply --server-side -k kustomize/monitoring
 
-**Postgres**
+# Postgres
 pgbouncer, postgresha1 x 2 replica, repo
 4. kubectl apply -k kustomize/high-availability
 4. kubectl apply -k kustomize/postgres
@@ -20,7 +20,7 @@ pgadmin
 
 6. kubectl apply -k kustomize/pgadmin
 
-**Connecting to a Postgres Cluster**
+# Connecting to a Postgres Cluster
 7. eval $(crc oc-env)
 8. oc port-forward pgadmin-8dffcbfe-0058-47e0-9968-e46d6b00eca6-0 5050:5050
 
